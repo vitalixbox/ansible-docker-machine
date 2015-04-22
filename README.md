@@ -1,3 +1,9 @@
+Collection of modules for ansible
+
+* Connection plugin for run ansible modules through docker-machine
+* Dynamic inventory for docker-machine
+* Module for creating ans deleting machines through docker-machine
+
 # How to test
 
 ```bash
