@@ -11,10 +11,10 @@ Provided plugins:
 
 This command create new machine on DigitalOcean with name test-machine and deploy nginx container on test-machine:
 ```bash
-ansible-playbook -i hosts.py playbook.yml --tags create -e token=YOU_DIGITALOCEAN_TOKEN
-# And you may open browser ans see "Welcome to nginx!". Ip is - `docker-machine ip test-machine`
+ansible-playbook -i hosts.py playbook.yml -e token=YOU_DIGITALOCEAN_TOKEN
+# And you may open browser and see "Welcome to nginx!". Ip is - `docker-machine ip test-machine`
 ```
 
 This is equivalent:
 * `docker-machine create --driver=digitalocean --digitalocean-access-token=YOU_DIGITALOCEAN_TOKEN test-machine`
-* `docker $(docker-machine config test-machine) run --name nginx -d -p 80:80 nginx
+* `docker $(docker-machine config test-machine) run --name nginx -d -p 80:80 nginx`
