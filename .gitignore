@@ -1,0 +1,9 @@
+*.pyc
+*.out
+*.bak
+*.log
+*.orig
+.idea
+.DS_Store
+.project
+.pydevproject

@@ -1,19 +1,16 @@
 # vim:ft=ansible:
-
 - name: create machine
   hosts: localhost
-  connection: local
   gather_facts: no
   tags: create
 
   tasks:
-  - shell: >
-      docker-machine create
-      --driver digitalocean
-      --digitalocean-access-token {{ token }}
-      --digitalocean-region ams3
-      test-machine
-    changed_when: false
+  - docker_machine:
+      name: test-machine
+      state: present
+      driver: digitalocean
+      digitalocean_access_token: "{{ token }}"
+      digitalocean_region: ams3
 
 - name: deploy machine
   hosts: test-machine
@@ -28,5 +25,5 @@
       state: started
       use_tls: encrypt
       ports:
-        - "80:8080"
+        - "80:80"
 
