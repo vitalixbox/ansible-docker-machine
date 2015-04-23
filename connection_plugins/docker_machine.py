@@ -2,6 +2,7 @@ import os
 import select
 import fcntl
 import subprocess
+from subprocess import Popen, PIPE
 
 from ansible.callbacks import vvv
 from ansible import errors
@@ -18,9 +19,14 @@ class Connection(LocalConnection):
         self.machine_name = kwargs['private_key_file'].split('/')[-2]
         self.envs = os.environ.copy()
 
-        out = subprocess.check_output(
-            ['docker-machine', 'env', self.machine_name]
+        p = Popen(
+            ['docker-machine', 'env', self.machine_name],
+            stdin=PIPE, stdout=PIPE, stderr=PIPE
         )
+        out, err = p.communicate()
+        rc = p.returncode
+        if rc != 0:
+            raise errors.AnsibleError('Error with executing docker-machine env')
         for env in out.splitlines():
             env = env.replace('export ', '').split('=')
             self.envs[env[0]] = env[1]
