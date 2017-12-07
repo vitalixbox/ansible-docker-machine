@@ -47,6 +47,39 @@ def docker_machine_create(module):
             cmd.extend([
                 '--digitalocean-size', params['digitalocean_size']
             ])
+    if 'virtualbox' == params['driver']:
+        if params['virtualbox-cpu-count']:
+            cmd.extend(['--virtualbox-cpu-count', params['virtualbox-cpu-count']])
+        if params['virtualbox-boot2docker-url']:
+            cmd.extend(['--virtualbox-boot2docker-url', params['virtualbox-boot2docker-url']])
+        if params['virtualbox-disk-size']:
+            cmd.extend(['--virtualbox-disk-size', params['virtualbox-disk-size']])
+        if params['virtualbox-host-dns-resolver']:
+            cmd.extend(['--virtualbox-host-dns-resolver', params['virtualbox-host-dns-resolver']])
+        if params['virtualbox-hostonly-cidr']:
+            cmd.extend(['--virtualbox-hostonly-cidr', params['virtualbox-hostonly-cidr']])
+        if params['virtualbox-hostonly-nicpromisc']:
+            cmd.extend(['--virtualbox-hostonly-nicpromisc', params['virtualbox-hostonly-nicpromisc']])
+        if params['virtualbox-hostonly-nictype']:
+            cmd.extend(['--virtualbox-hostonly-nictype', params['virtualbox-hostonly-nictype']])
+        if params['virtualbox-hostonly-no-dhcp']:
+            cmd.extend(['--virtualbox-hostonly-no-dhcp', params['virtualbox-hostonly-no-dhcp']])
+        if params['virtualbox-import-boot2docker-vm']:
+            cmd.extend(['--virtualbox-import-boot2docker-vm', params['virtualbox-import-boot2docker-vm']])
+        if params['virtualbox-memory']:
+            cmd.extend(['--virtualbox-memory', params['virtualbox-memory']])
+        if params['virtualbox-nat-nictype']:
+            cmd.extend(['--virtualbox-nat-nictype', params['virtualbox-nat-nictype']])
+        if params['virtualbox-no-dns-proxy']:
+            cmd.extend(['--virtualbox-no-dns-proxy', params['virtualbox-no-dns-proxy']])
+        if params['virtualbox-no-share']:
+            cmd.extend(['--virtualbox-no-share', params['virtualbox-no-share']])
+        if params['virtualbox-no-vtx-check']:
+            cmd.extend(['--virtualbox-no-vtx-check', params['virtualbox-no-vtx-check']])
+        if params['virtualbox-share-folder']:
+            cmd.extend(['--virtualbox-share-folder', params['virtualbox-share-folder']])
+        if params['virtualbox-ui-type']:
+            cmd.extend(['--virtualbox-ui-type', params['virtualbox-ui-type']])
     cmd.append(params['name'])
     command(module, cmd)
 
@@ -81,6 +114,13 @@ def main():
         if 'digitalocean' == module.params['driver']:
             if not module.params['digitalocean_access_token']:
                 module.fail_json(msg='DigitalOcean access token required.')
+
+            if not docker_machine_exists(module):
+                docker_machine_create(module)
+            else:
+                changed = False
+
+        if 'virtualbox' == module.params['driver']:
 
             if not docker_machine_exists(module):
                 docker_machine_create(module)
