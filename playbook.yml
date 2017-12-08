@@ -6,24 +6,8 @@
 
   tasks:
   - docker_machine:
-      name: test-machine
+      name: test-machine2
       state: present
-      driver: digitalocean
-      digitalocean_access_token: "{{ token }}"
-      digitalocean_region: ams3
-
-- name: deploy machine
-  hosts: test-machine
-  connection: docker_machine
-  gather_facts: no
-  tags: deploy
-
-  tasks:
-  - docker:
-      name: nginx
-      image: nginx
-      state: started
-      use_tls: encrypt
-      ports:
-        - "80:80"
-
+      driver: virtualbox
+      virtualbox_memory: "2048"
+      virtualbox_cpu_count: "2"

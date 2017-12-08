@@ -48,38 +48,38 @@ def docker_machine_create(module):
                 '--digitalocean-size', params['digitalocean_size']
             ])
     if 'virtualbox' == params['driver']:
-        if params['virtualbox-cpu-count']:
-            cmd.extend(['--virtualbox-cpu-count', params['virtualbox-cpu-count']])
-        if params['virtualbox-boot2docker-url']:
-            cmd.extend(['--virtualbox-boot2docker-url', params['virtualbox-boot2docker-url']])
-        if params['virtualbox-disk-size']:
-            cmd.extend(['--virtualbox-disk-size', params['virtualbox-disk-size']])
-        if params['virtualbox-host-dns-resolver']:
-            cmd.extend(['--virtualbox-host-dns-resolver', params['virtualbox-host-dns-resolver']])
-        if params['virtualbox-hostonly-cidr']:
-            cmd.extend(['--virtualbox-hostonly-cidr', params['virtualbox-hostonly-cidr']])
-        if params['virtualbox-hostonly-nicpromisc']:
-            cmd.extend(['--virtualbox-hostonly-nicpromisc', params['virtualbox-hostonly-nicpromisc']])
-        if params['virtualbox-hostonly-nictype']:
-            cmd.extend(['--virtualbox-hostonly-nictype', params['virtualbox-hostonly-nictype']])
-        if params['virtualbox-hostonly-no-dhcp']:
-            cmd.extend(['--virtualbox-hostonly-no-dhcp', params['virtualbox-hostonly-no-dhcp']])
-        if params['virtualbox-import-boot2docker-vm']:
-            cmd.extend(['--virtualbox-import-boot2docker-vm', params['virtualbox-import-boot2docker-vm']])
-        if params['virtualbox-memory']:
-            cmd.extend(['--virtualbox-memory', params['virtualbox-memory']])
-        if params['virtualbox-nat-nictype']:
-            cmd.extend(['--virtualbox-nat-nictype', params['virtualbox-nat-nictype']])
-        if params['virtualbox-no-dns-proxy']:
-            cmd.extend(['--virtualbox-no-dns-proxy', params['virtualbox-no-dns-proxy']])
-        if params['virtualbox-no-share']:
-            cmd.extend(['--virtualbox-no-share', params['virtualbox-no-share']])
-        if params['virtualbox-no-vtx-check']:
-            cmd.extend(['--virtualbox-no-vtx-check', params['virtualbox-no-vtx-check']])
-        if params['virtualbox-share-folder']:
-            cmd.extend(['--virtualbox-share-folder', params['virtualbox-share-folder']])
-        if params['virtualbox-ui-type']:
-            cmd.extend(['--virtualbox-ui-type', params['virtualbox-ui-type']])
+        if params['virtualbox_cpu_count']:
+            cmd.extend(['--virtualbox-cpu-count', params['virtualbox_cpu_count']])
+        if params['virtualbox_boot2docker_url']:
+            cmd.extend(['--virtualbox-boot2docker-url', params['virtualbox_boot2docker_url']])
+        if params['virtualbox_disk_size']:
+            cmd.extend(['--virtualbox-disk-size', params['virtualbox_disk_size']])
+        if params['virtualbox_host_dns_resolver']:
+            cmd.extend(['--virtualbox-host-dns-resolver', params['virtualbox_host_dns_resolver']])
+        if params['virtualbox_hostonly_cidr']:
+            cmd.extend(['--virtualbox-hostonly-cidr', params['virtualbox_hostonly_cidr']])
+        if params['virtualbox_hostonly_nicpromisc']:
+            cmd.extend(['--virtualbox-hostonly-nicpromisc', params['virtualbox_hostonly_nicpromisc']])
+        if params['virtualbox_hostonly_nictype']:
+            cmd.extend(['--virtualbox-hostonly-nictype', params['virtualbox_hostonly_nictype']])
+        if params['virtualbox_hostonly_no_dhcp']:
+            cmd.extend(['--virtualbox-hostonly-no-dhcp', params['virtualbox_hostonly_no_dhcp']])
+        if params['virtualbox_import_boot2docker_vm']:
+            cmd.extend(['--virtualbox-import-boot2docker-vm', params['virtualbox_import_boot2docker_vm']])
+        if params['virtualbox_memory']:
+            cmd.extend(['--virtualbox-memory', params['virtualbox_memory']])
+        if params['virtualbox_nat_nictype']:
+            cmd.extend(['--virtualbox-nat-nictype', params['virtualbox_nat_nictype']])
+        if params['virtualbox_no_dns_proxy']:
+            cmd.extend(['--virtualbox-no-dns-proxy', params['virtualbox_no_dns_proxy']])
+        if params['virtualbox_no_share']:
+            cmd.extend(['--virtualbox-no-share', params['virtualbox_no_share']])
+        if params['virtualbox_no_vtx_check']:
+            cmd.extend(['--virtualbox-no-vtx-check', params['virtualbox_no_vtx_check']])
+        if params['virtualbox_share_folder']:
+            cmd.extend(['--virtualbox-share-folder', params['virtualbox_share_folder']])
+        if params['virtualbox_ui_type']:
+            cmd.extend(['--virtualbox-ui-type', params['virtualbox_ui_type']])
     cmd.append(params['name'])
     command(module, cmd)
 
@@ -102,6 +102,23 @@ def main():
             digitalocean_image=dict(),
             digitalocean_region=dict(),
             digitalocean_size=dict(),
+
+            virtualbox_cpu_count=dict(),
+            virtualbox_boot2docker_url=dict(),
+            virtualbox_disk_size=dict(),
+            virtualbox_host_dns_resolver=dict(),
+            virtualbox_hostonly_cidr=dict(),
+            virtualbox_hostonly_nicpromisc=dict(),
+            virtualbox_hostonly_nictype=dict(),
+            virtualbox_hostonly_no_dhcp=dict(),
+            virtualbox_import_boot2docker_vm=dict(),
+            virtualbox_nat_nictype=dict(),
+            virtualbox_no_dns_proxy=dict(),
+            virtualbox_no_share=dict(),
+            virtualbox_no_vtx_check=dict(),
+            virtualbox_share_folder=dict(),
+            virtualbox_ui_type=dict(),
+            virtualbox_memory=dict(),
         ),
     )
     state = module.params['state']
